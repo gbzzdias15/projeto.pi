@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador</title>
+</head>
+<body>
+    <h1 ><b>Simulador Financeiro</b></h1> <br>
+    colheita feita em kg : <input type="text" id="ipt_colheita"><br>
+    quanto custa o kg : <input type="text" id="ipt_preco"><br>
+
+    quantidade de perca pela variação climatica/temperatura em kg: <input type="text" id="ipt_perca"> <br>
+    perda da safra pela falta de lavagem dos morangos em kg: <input type="text" id="ipt_lavagem"> <br>
+
+    gastos operacionais no mês: <input type="text" id="ipt_gastom"><br>
+     custo no mês para lavar : <input type="text" id="ipt_gastol"> <br>
+
+     <button onclick="calcular()">Fazer o calculo</button>
+
+     <div  id="div_mensagem"></div>
+    
+</body>
+</html>
+
+
+<script>
+
+function calcular(){
+
+var col = Number(ipt_colheita.value);
+var pre = Number (ipt_preco.value);
+var cli = Number (ipt_perca.value);
+var lav = Number(ipt_lavagem.value);
+var gas = Number (ipt_gastom.value);
+var cus = Number (ipt_gastol.value);
+
+
+ col = col * pre;
+var perr = cli * lav;
+var perr2= perr * pre;
+var som= gas + cus; 
+var som2 = perr2 + som;
+var sub = col - som2;
+var por = (som2 / col) * 100;
+
+
+div_mensagem.innerHTML=`o seu lucro bruto é de:${col} <br>
+com as falhas vc perdeu:${perr2}<br>
+custo da sua operação:${som}<br>
+seu lucro liquido foi:${sub}<br>
+com uma pedar de ${por}%`
+
+
+
+}
+
+
+</script>
